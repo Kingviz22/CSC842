@@ -2,11 +2,18 @@
 import requests
 from urllib.parse import urlparse
 from scapy.all import DNS, DNSQR, IP, sniff
+from plyer import notification
 
 def load_malicious_domains(filename):
     with open(filename, "r") as file:
         return file.read().splitlines()
-
+    
+def send_notification(title, message):
+    notification.notify(
+        title=title,
+        message=message,
+        timeout=10,
+    )
 def process_packet(packet):
     # If the packet has a DNS Request Layer (DNSQR)
     if packet.haslayer(DNSQR):
@@ -15,6 +22,7 @@ def process_packet(packet):
         for domain in malicious_domains:
             if domain in query_name:
                 print('[*] Detected Possible Malicious DNS Query: ', query_name)
+                send_notification("Detected Possible Malicious DNS Query", query_name)
                 break
 #grab list of malicious domains from urlhaus
 url = 'https://urlhaus.abuse.ch/downloads/text_online/' 
