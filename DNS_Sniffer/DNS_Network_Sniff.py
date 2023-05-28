@@ -27,12 +27,11 @@ def process_packet(packet):
 #grab list of malicious domains from urlhaus
 url = 'https://urlhaus.abuse.ch/downloads/text_online/' 
 listofurls = requests.get(url, allow_redirects=True)
-
 #store the list into a .txt file
 open('C:\\Users\\ipvizina\\downloads\\new.txt', 'wb').write(listofurls.content)
 #load list into a variable to use to compare
 
-malicious_domains = load_malicious_domains(r"C:\\Users\\ipvizina\downloads\\new2.txt")
+malicious_domains = load_malicious_domains(r"C:\\Users\\ipvizina\downloads\\new.txt")
 
 # Sniff the network for packets
 sniff(filter="port 53", prn=process_packet, store=0)
