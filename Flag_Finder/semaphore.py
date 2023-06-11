@@ -56,22 +56,23 @@ def main():
                     continue
             
     output= ''
+    
     if args.bin: 
         output = ' '.join (bin_list)
-        #print(joined_bin)
         print("The number of TCP packets in the pcap was: ",count)
         if args.decode:
             print("Run program with --ascii argument instead of --bin if the output needs to be decode.")
+    
     elif args.ascii: 
         output = ''.join (ascii_list)
         print("The number of TCP packets in the pcap was: ",count)
-        #print(joined_ascii,"\n"  )
         if args.decode:
             try:
                 b_64_string=base64.b64decode(output)
                 output= f"The Base 64 decode text is:\n{b_64_string}"
             except:
                 print("The text is not base64 encoded.")
+    
     if args.output:
         with open(args.output, 'w') as f:
             f.write(output)
