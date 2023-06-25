@@ -43,18 +43,7 @@ def is_vulnerable_to_sqli(url):
             print(f"Error occurred: {str(e)}")
     return False
 
-def test_get_params(url):
-    try:
-        for payload in payloads:
-            if "?" in url:  # it means we have at least one parameter in URL
-                # replace first '=' to our payload
-                req_url = url.replace("=", "="+payload, 1)
-                response = requests.get(req_url)
-                if payload in response.text:
-                    print(f"GET Parameter vulnerability detected, url: {req_url}, payload: {payload}")
-    except:
-        print(f"error with {url}")
-        pass
+
 # Define function to test GET requests
 def test_get_params(url):
     try:
