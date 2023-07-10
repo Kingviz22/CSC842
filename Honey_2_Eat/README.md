@@ -6,8 +6,8 @@ Honey_2_Eat does not require any modules outside the standard python library.
 To download the repo:
 ```
 git clone https://github.com/Kingviz22/CSC842.git
-cd CSC842/URLs_4_Every1
-./URLs_4_Every1.py
+cd CSC842/Honey_2_Eat
+sudo python3 Honey_2_Eat.py 
 ```
 
 ##Usage
