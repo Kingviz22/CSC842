@@ -46,7 +46,7 @@ def main(target_ip, target_port, data):
         tcp_packet = TCP(dport=target_port, window=win_value, urgptr=0 if i < len(data_chunks) else int.from_bytes(chunk, byteorder='big'), options=[('NOP', None)])
 
         # Send the packet
-        send(ip_packet/tcp_packet)
+        send(ip_packet/tcp_packet, verbose=false)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='TCP Packet Steganography')
